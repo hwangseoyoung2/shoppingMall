@@ -86,7 +86,7 @@
             <div class="input-container">
                 <label for="memberId">아이디 </label>
                 <div style="display: flex;">
-                    <input type="text" id="memberId" name="memberId" required style="flex: 1;">
+                    <input type="text" id="memberId" name="memberId" required style="flex: 1;" placeholder="최소 6자 이상이어야 하며 영문, 숫자만 가능합니다">
                     <button id="checkDuplicate">중복 체크</button>
                 </div>
                 <span id="duplicateResult"></span>
@@ -94,7 +94,7 @@
 
             <div class="input-container">
                 <label for="password">비밀번호 </label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" required placeholder="비밀번호는 대소문자, 숫자, 특수문자를 포함하여 최소 8자 이상이어야 합니다.">
             </div>
 
             <div class="input-container">
@@ -140,6 +140,11 @@
 	$(document).ready(function() {
 	    var isIdAvailable = false;
 	    var isVerificationCodeValid = false;
+	    
+	    function isAlphanumeric(input) {
+	        var alphanumericRegex = /^[a-zA-Z0-9]+$/;
+	        return alphanumericRegex.test(input);
+	    }
 	
 	    //아이디 중복 체크
 	    $("#checkDuplicate").click(function(event) {
@@ -148,6 +153,15 @@
 	        var memberId = $("#memberId").val();
 	        
 	        if (memberId) {
+	            if (!isAlphanumeric(memberId)) {
+	                alert("아이디는 영문과 숫자만 허용됩니다.");
+	                return;
+	            }
+                if (memberId.length < 6) {
+                    alert("아이디는 최소 6자 이상이어야 합니다.");
+                    return;
+                }
+                
 	            $.ajax({
 	                url: "/checkDuplicateId",
 	                type: "POST",
@@ -166,6 +180,11 @@
 	            alert("아이디를 입력해주세요.");
 	        }
 	    });
+	    
+	function isStrongPassword(input) {
+	    var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/;
+	    return passwordRegex.test(input);
+	}
 
     $("#joinFormSubmit").click(function(event) {
         event.preventDefault();
@@ -175,6 +194,13 @@
         var email = $("#email").val();
         var address = $("#address").val();
         var detailAddress = $("#detailAddress").val();
+        
+        var password = $("#password").val();
+        
+        if (!isStrongPassword(password)) {
+            alert("비밀번호는 대소문자, 숫자, 특수문자를 포함하여 최소 8자 이상이어야 합니다.");
+            return;
+        }
 
         if (!isIdAvailable) {
             alert("아이디 중복확인을 해주세요.");
@@ -236,9 +262,10 @@
 
 	    if (userVerificationCode) {
 	        $.ajax({
-	            url: "/verifyVerificationCode",
+	        	url: "/verifyVerificationCode",
 	            type: "POST",
-	            data: { userVerificationCode: userVerificationCode },
+	            contentType: "application/json",
+	            data: JSON.stringify({ userVerificationCode: userVerificationCode }),
 	            success: function(response, status, xhr) {
 	                if (xhr.status === 200) {
 	                    alert("인증에 성공했습니다.");
