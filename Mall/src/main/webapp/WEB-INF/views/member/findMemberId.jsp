@@ -71,7 +71,7 @@
 	        <input type="button" id="verifyCode" value="인증 확인">
 	    </form>
 	    <button id="goLogin" name="goLogin" onclick="location.href='/login'">로그인 하러 가기</button>
-	    <button id="findPw" name="findPw" onclick="/findPassword">비밀번호 찾기</button>
+	    <button id="findPw" name="findPw" onclick="location.href='/findPassword'">비밀번호 찾기</button>
 	</div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>

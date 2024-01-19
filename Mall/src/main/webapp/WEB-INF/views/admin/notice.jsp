@@ -105,7 +105,7 @@
                     <tr>
                         <td>${loop.index + 1}</td>
                         <td><a href="/noticeDetail?id=${notice.id}">${notice.title}</a></td>
-                        <td>${notice.member.name}</td>
+                        <td>${notice.member.memberId}</td>
                     </tr>
                 </c:forEach>
             </tbody>

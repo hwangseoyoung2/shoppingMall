@@ -106,7 +106,7 @@
                     <td>${refund.buyerName }</td>
                     <td>${refund.buyerAddr }</td>
                     <td>${refund.buyerTel }</td>
-                    <td>${refund.cancleDate }</td>
+                    <td>${refund.cancelDate}</td>
                 </tr>
             </c:forEach>
         </table>

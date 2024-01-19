@@ -278,7 +278,7 @@
                               alert("결제 완료");
                               $.ajax({
                                   type: "POST",
-                                  url: "/cart/remove/" + paymentId,
+                                  url: "/cart/remove",
                                   contentType: "application/json",
                                   data: JSON.stringify(itemIds),
                                   success: function (response) {

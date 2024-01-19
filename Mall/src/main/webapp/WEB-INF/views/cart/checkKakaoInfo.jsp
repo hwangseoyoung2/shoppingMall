@@ -277,9 +277,7 @@
 	                imp_uid: imp_uid,
 	                cartItems: cartItems
 	            };
-	            
-	            console.log("rsp:", rsp);
-	            
+
                 $.ajax({
                     type: "POST",
                     url: "/payment/save",
@@ -287,6 +285,7 @@
                     data: JSON.stringify(paymentData),
                     success: function (createdPayment) {
                         var paymentId = createdPayment.id;
+                        console.log("paymentId: ", paymentId);
                         if (rsp.paid_amount == paymentData.amount) {
                             alert("결제 완료");
                             

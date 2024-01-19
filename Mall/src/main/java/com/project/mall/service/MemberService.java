@@ -119,7 +119,7 @@ public class MemberService {
                     "</div>";
 			emailService.sendMemberId(email, subject, htmlContent);
 		} else {
-			throw new IllegalArgumentException("인증에 실패했습니다. 올바른 인증번호를 입력해주세요.");
+			throw new IllegalArgumentException("입력하신 아이디 또는 이메일을 확인해주세요.");
 		}
 	}
 

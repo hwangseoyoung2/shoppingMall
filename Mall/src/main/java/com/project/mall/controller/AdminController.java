@@ -163,7 +163,6 @@ public class AdminController {
 
 	@DeleteMapping("/deleteNotice/{id}")
 	public ResponseEntity<String> delete(@PathVariable Long id) {
-	    System.out.println("deleteId: " + id);
 
 	    try {
 	        noticeService.deleteById(id);

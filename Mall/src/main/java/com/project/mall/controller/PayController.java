@@ -47,16 +47,18 @@ public class PayController {
 	@PostMapping("/payment/save")
 	public ResponseEntity<String> savePayment(@RequestBody PaymentData paymentData, HttpSession session) {
 	    Payment payment = Payment.convertPaymentDataToPayment(paymentData);
+	    System.out.println("payment: "+payment);
 
 	    paymentService.savePayment(payment);
-	    System.out.println("payment: "+payment);
 	    return new ResponseEntity<>("Payment information successfully saved", HttpStatus.OK);
 	}
+
 
     @PostMapping("/cart/remove")
     public ResponseEntity<String> removeItemsFromCart(@RequestBody List<Long> itemIds) {
         try {
             cartItemService.deleteById(itemIds);
+            System.out.println("itemIds: "+itemIds);
             return ResponseEntity.ok("상품이 장바구니에서 삭제되었습니다.");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -71,7 +73,6 @@ public class PayController {
 		
 		if(memberId != null) {
 			List<Payment> payments = paymentService.findPaymentsByBuyerId(memberId);
-			System.out.println("payments: "+payments);
 			model.addAttribute("payments", payments);
 		}
 		

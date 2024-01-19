@@ -100,7 +100,7 @@
             var specificReason = document.getElementById("reason").value;
             var requestData = {
                 impUid: selectedPaymentImpUid,
-                cancle_request_amount: selectedPaymentAmount,
+                cancel_request_amount: selectedPaymentAmount,
                 reason: specificReason,
                 buyerEmail: buyerEmail,
                 buyerAddr: buyerAddr,

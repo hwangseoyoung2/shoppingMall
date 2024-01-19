@@ -215,7 +215,7 @@
         </c:if>
     </div>
     <div class="button-container2">
-        <input type="button" class="input-button-style" value="상품 문의 등록" onclick="location.href='/itemQnARegister?id=${itemId}'">
+
         <input type="button" class="qnaBtn" value="홈으로" onclick="location.href='/'">
     </div>
 </body>

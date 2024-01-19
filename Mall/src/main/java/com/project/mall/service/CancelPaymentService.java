@@ -29,7 +29,7 @@ public class CancelPaymentService {
     }
     
     public Page<CancelPayment> findByAllRefundList(int page) {
-    	Sort sort = Sort.by(Sort.Order.desc("cancleDate"));
+    	Sort sort = Sort.by(Sort.Order.desc("cancelDate"));
     	Pageable pageable = PageRequest.of(page, 10, sort);
     	return canclePaymentRepository.findAll(pageable);
     }
